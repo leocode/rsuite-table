@@ -7,7 +7,7 @@ import get from 'lodash/get';
 import without from 'lodash/without';
 import Examples from './Examples';
 import './less/index.less';
-import { Table, Column, Cell, HeaderCell, ColumnGroup } from '../src';
+import { Table, Column, Cell, HeaderCell, ColumnGroup, FooterCell } from '../src';
 import fakeData from './data/users';
 import fakeTreeData from './data/treeData';
 import fakeDataForColSpan from './data/usersForColSpan';
@@ -42,6 +42,7 @@ function App() {
           ColumnGroup,
           Cell,
           HeaderCell,
+          FooterCell,
           clone,
           createFakeRowObjectData,
           fakeObjectDataListStore,

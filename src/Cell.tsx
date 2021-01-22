@@ -16,10 +16,12 @@ export const propTypes = {
   classPrefix: PropTypes.string,
   dataKey: PropTypes.string,
   isHeaderCell: PropTypes.bool,
+  isFooterCell: PropTypes.bool,
   width: PropTypes.number,
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
   left: PropTypes.number,
   headerHeight: PropTypes.number,
+  footerHeight: PropTypes.number,
   style: PropTypes.object,
   firstColumn: PropTypes.bool,
   lastColumn: PropTypes.bool,
@@ -46,6 +48,7 @@ class Cell extends React.PureComponent<CellProps> {
   static defaultProps = {
     classPrefix: defaultClassPrefix('table-cell'),
     headerHeight: 36,
+    footerHeight: 36,
     depth: 0,
     height: 36,
     width: 0,
@@ -106,7 +109,9 @@ class Cell extends React.PureComponent<CellProps> {
       firstColumn,
       lastColumn,
       isHeaderCell,
+      isFooterCell,
       headerHeight,
+      footerHeight,
       align,
       children,
       rowData,
@@ -133,7 +138,13 @@ class Cell extends React.PureComponent<CellProps> {
     });
     const { rtl } = this.context;
 
-    const nextHeight = isHeaderCell ? headerHeight : this.getHeight();
+    let nextHeight = this.getHeight();
+    if (isHeaderCell) {
+      nextHeight = headerHeight;
+    } else if (isFooterCell) {
+      nextHeight = footerHeight;
+    }
+
     const styles = {
       width,
       height: nextHeight,

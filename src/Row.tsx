@@ -20,7 +20,8 @@ class Row extends React.PureComponent<RowProps> {
   static defaultProps = {
     classPrefix: defaultClassPrefix('table-row'),
     height: 46,
-    headerHeight: 40
+    headerHeight: 40,
+    footerHeight: 40
   };
   render() {
     const {
@@ -30,7 +31,9 @@ class Row extends React.PureComponent<RowProps> {
       top,
       style,
       isHeaderRow,
+      isFooterRow,
       headerHeight,
+      footerHeight,
       rowRef,
       classPrefix,
       children,
@@ -39,12 +42,20 @@ class Row extends React.PureComponent<RowProps> {
 
     const addPrefix = prefix(classPrefix);
     const classes = classNames(classPrefix, className, {
-      [addPrefix('header')]: isHeaderRow
+      [addPrefix('header')]: isHeaderRow,
+      [addPrefix('footer')]: isFooterRow
     });
+
+    let rowHeight = height;
+    if (isHeaderRow) {
+      rowHeight = headerHeight;
+    } else if (isFooterRow) {
+      rowHeight = footerHeight;
+    }
 
     const styles = {
       minWidth: width,
-      height: isHeaderRow ? headerHeight : height,
+      height: rowHeight,
       ...style
     };
 
