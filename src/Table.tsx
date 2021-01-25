@@ -276,6 +276,7 @@ class Table extends React.Component<TableProps, TableState> {
     this.affixHeaderWrapperRef = React.createRef();
     this.mouseAreaRef = React.createRef();
     this.headerWrapperRef = React.createRef();
+    this.footerWrapperRef = React.createRef();
     this.wheelWrapperRef = React.createRef();
     this.tableHeaderRef = React.createRef();
     this.tableFooterRef = React.createRef();
@@ -855,16 +856,20 @@ class Table extends React.Component<TableProps, TableState> {
     } else {
       const wheelStyle = {};
       const headerStyle = {};
+      const footerStyle = {};
 
       this.translateDOMPositionXY(wheelStyle, this.scrollX, this.scrollY);
       this.translateDOMPositionXY(headerStyle, this.scrollX, 0);
+      this.translateDOMPositionXY(footerStyle, this.scrollX, 0);
 
       const wheelElement = this.wheelWrapperRef?.current;
       const headerElement = this.headerWrapperRef?.current;
+      const footerElement = this.footerWrapperRef?.current;
       const affixHeaderElement = this.affixHeaderWrapperRef?.current;
 
       wheelElement && addStyle(wheelElement, wheelStyle);
       headerElement && addStyle(headerElement, headerStyle);
+      footerElement && addStyle(footerElement, footerStyle);
 
       if (affixHeaderElement?.hasChildNodes?.()) {
         addStyle(affixHeaderElement.firstChild, headerStyle);
@@ -1233,6 +1238,8 @@ class Table extends React.Component<TableProps, TableState> {
         cellGroupHeight = props.footerHeight;
       }
 
+      const mergedSCroll = mergeCells(scrollCells);
+
       return (
         <Row {...restRowProps} data-depth={depth} style={rowStyles}>
           {fixedLeftCellGroupWidth ? (
@@ -1246,7 +1253,7 @@ class Table extends React.Component<TableProps, TableState> {
             </CellGroup>
           ) : null}
 
-          <CellGroup>{mergeCells(scrollCells)}</CellGroup>
+          <CellGroup>{mergedSCroll}</CellGroup>
 
           {fixedRightCellGroupWidth ? (
             <CellGroup

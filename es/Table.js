@@ -555,6 +555,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
     _this.affixHeaderWrapperRef = /*#__PURE__*/React.createRef();
     _this.mouseAreaRef = /*#__PURE__*/React.createRef();
     _this.headerWrapperRef = /*#__PURE__*/React.createRef();
+    _this.footerWrapperRef = /*#__PURE__*/React.createRef();
     _this.wheelWrapperRef = /*#__PURE__*/React.createRef();
     _this.tableHeaderRef = /*#__PURE__*/React.createRef();
     _this.tableFooterRef = /*#__PURE__*/React.createRef();
@@ -952,17 +953,21 @@ var Table = /*#__PURE__*/function (_React$Component) {
     if (this.state.shouldFixedColumn) {
       this.updatePositionByFixedCell();
     } else {
-      var _this$wheelWrapperRef, _this$headerWrapperRe2, _this$affixHeaderWrap, _affixHeaderElement$h;
+      var _this$wheelWrapperRef, _this$headerWrapperRe2, _this$footerWrapperRe, _this$affixHeaderWrap, _affixHeaderElement$h;
 
       var wheelStyle = {};
       var headerStyle = {};
+      var footerStyle = {};
       this.translateDOMPositionXY(wheelStyle, this.scrollX, this.scrollY);
       this.translateDOMPositionXY(headerStyle, this.scrollX, 0);
+      this.translateDOMPositionXY(footerStyle, this.scrollX, 0);
       var wheelElement = (_this$wheelWrapperRef = this.wheelWrapperRef) === null || _this$wheelWrapperRef === void 0 ? void 0 : _this$wheelWrapperRef.current;
       var headerElement = (_this$headerWrapperRe2 = this.headerWrapperRef) === null || _this$headerWrapperRe2 === void 0 ? void 0 : _this$headerWrapperRe2.current;
+      var footerElement = (_this$footerWrapperRe = this.footerWrapperRef) === null || _this$footerWrapperRe === void 0 ? void 0 : _this$footerWrapperRe.current;
       var affixHeaderElement = (_this$affixHeaderWrap = this.affixHeaderWrapperRef) === null || _this$affixHeaderWrap === void 0 ? void 0 : _this$affixHeaderWrap.current;
       wheelElement && addStyle(wheelElement, wheelStyle);
       headerElement && addStyle(headerElement, headerStyle);
+      footerElement && addStyle(footerElement, footerStyle);
 
       if (affixHeaderElement !== null && affixHeaderElement !== void 0 && (_affixHeaderElement$h = affixHeaderElement.hasChildNodes) !== null && _affixHeaderElement$h !== void 0 && _affixHeaderElement$h.call(affixHeaderElement)) {
         addStyle(affixHeaderElement.firstChild, headerStyle);
@@ -1250,6 +1255,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
         cellGroupHeight = props.footerHeight;
       }
 
+      var mergedSCroll = mergeCells(scrollCells);
       return /*#__PURE__*/React.createElement(Row, _extends({}, restRowProps, {
         "data-depth": depth,
         style: rowStyles
@@ -1260,7 +1266,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
         style: this.isRTL() ? {
           right: width - fixedLeftCellGroupWidth - rowRight
         } : null
-      }, mergeCells(resetLeftForCells(fixedLeftCells))) : null, /*#__PURE__*/React.createElement(CellGroup, null, mergeCells(scrollCells)), fixedRightCellGroupWidth ? /*#__PURE__*/React.createElement(CellGroup, {
+      }, mergeCells(resetLeftForCells(fixedLeftCells))) : null, /*#__PURE__*/React.createElement(CellGroup, null, mergedSCroll), fixedRightCellGroupWidth ? /*#__PURE__*/React.createElement(CellGroup, {
         fixed: "right",
         style: this.isRTL() ? {
           right: 0 - rowRight - SCROLLBAR_WIDTH

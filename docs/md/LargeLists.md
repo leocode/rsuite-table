@@ -18,7 +18,7 @@ const LargeListsTable = () => {
           console.log(data);
         }}
       >
-        <Column width={70} align="center" fixed>
+        <Column width={70} align="center">
           <HeaderCell>Id</HeaderCell>
           <Cell dataKey="id" />
           <FooterCell>Id</FooterCell>
