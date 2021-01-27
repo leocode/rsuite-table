@@ -1422,6 +1422,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
           contentHeight += nextRowHeight;
           var rowProps = {
             key: index,
+            index: index,
             top: top,
             width: rowWidth,
             depth: depth,
@@ -1458,6 +1459,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
           var _rowData = data[_index];
           var _rowProps = {
             key: _index,
+            index: _index,
             top: _index * _nextRowHeight,
             width: rowWidth,
             height: _nextRowHeight

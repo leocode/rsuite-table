@@ -1430,6 +1430,7 @@ class Table extends React.Component<TableProps, TableState> {
 
           const rowProps = {
             key: index,
+            index,
             top,
             width: rowWidth,
             depth,
@@ -1469,6 +1470,7 @@ class Table extends React.Component<TableProps, TableState> {
           const rowData = data[index];
           const rowProps = {
             key: index,
+            index,
             top: index * nextRowHeight,
             width: rowWidth,
             height: nextRowHeight

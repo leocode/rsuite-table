@@ -25,6 +25,7 @@ class Row extends React.PureComponent<RowProps> {
   };
   render() {
     const {
+      index,
       className,
       width,
       height,
@@ -42,6 +43,7 @@ class Row extends React.PureComponent<RowProps> {
 
     const addPrefix = prefix(classPrefix);
     const classes = classNames(classPrefix, className, {
+      [addPrefix('is-even')]: index % 2 === 0,
       [addPrefix('header')]: isHeaderRow,
       [addPrefix('footer')]: isFooterRow
     });

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StandardProps } from './common';
 
 export interface RowProps extends StandardProps {
+  index?: number;
   width?: number;
   height?: number;
   headerHeight?: number;

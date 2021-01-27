@@ -20,6 +20,7 @@ var Row = /*#__PURE__*/function (_React$PureComponent) {
     var _classNames;
 
     var _this$props = this.props,
+        index = _this$props.index,
         className = _this$props.className,
         width = _this$props.width,
         height = _this$props.height,
@@ -32,10 +33,10 @@ var Row = /*#__PURE__*/function (_React$PureComponent) {
         rowRef = _this$props.rowRef,
         classPrefix = _this$props.classPrefix,
         children = _this$props.children,
-        rest = _objectWithoutPropertiesLoose(_this$props, ["className", "width", "height", "top", "style", "isHeaderRow", "isFooterRow", "headerHeight", "footerHeight", "rowRef", "classPrefix", "children"]);
+        rest = _objectWithoutPropertiesLoose(_this$props, ["index", "className", "width", "height", "top", "style", "isHeaderRow", "isFooterRow", "headerHeight", "footerHeight", "rowRef", "classPrefix", "children"]);
 
     var addPrefix = prefix(classPrefix);
-    var classes = classNames(classPrefix, className, (_classNames = {}, _classNames[addPrefix('header')] = isHeaderRow, _classNames[addPrefix('footer')] = isFooterRow, _classNames));
+    var classes = classNames(classPrefix, className, (_classNames = {}, _classNames[addPrefix('is-even')] = index % 2 === 0, _classNames[addPrefix('header')] = isHeaderRow, _classNames[addPrefix('footer')] = isFooterRow, _classNames));
     var rowHeight = height;
 
     if (isHeaderRow) {
